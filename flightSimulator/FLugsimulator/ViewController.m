@@ -13,9 +13,9 @@
 // Die Grafik des Flugzeuges
 @property (weak, nonatomic) IBOutlet UIImageView *airplane;
 
-
-@property (nonatomic, strong) IBOutlet UIImage *cloud;
-
+@property (nonatomic, strong) UIImage *cloud;
+@property (nonatomic, strong) NSTimer *gametimer;
+@property (nonatomic, strong) UIView *blueView;
 
 
 @end
@@ -24,18 +24,53 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    CGRect blueFrame = CGRectMake(10, 10, 300, 400);
+    self.blueView = [[UIView alloc] initWithFrame:blueFrame];
+    
+    // Farbe des Frames festlegen
+    self.blueView.backgroundColor = [UIColor greenColor];
+    
+    // SubView dem RootView zuweisen
+    [self.view addSubview:self.blueView];
+    
+    // Bildbenennung
     self.cloud = [UIImage imageNamed:@"cloud.png"];
-    UIImageView = *cloudView = [[UZIImageView alloc] initWithImage:self.cloud];
-    [self.view addSubview:cloudView];
+    
+    // Speicher zuweisen und initialisieren
+    UIImageView *cloudView = [[UIImageView alloc] initWithImage:self.cloud];
+    
+    // Dem SubView einem zusaetzl. SubView zuweisen. Hier des Bildes
+    [self.blueView addSubview:cloudView];
+    
+    // Bildframe erstellen
     CGRect cloudFrame = cloudView.frame;
+    // Startpunkt festlegen
     CGPoint startPoint = CGPointMake(50, 150);
+    // Startpunkt dem Frame zuweisen
     cloudFrame.origin = startPoint;
     cloudView.frame = cloudFrame;
-    //NSLog(@"ImageViewFrame:%@", NSStringFromCGRect(cloudFrame));
+    
+    // Timer
+    // = Endlosschleife bis Programm abgebrochen wird oder der Parameter invalidate genutzt wird.
+    // callBack ist die Methode, die vom NSTimer immer wieder aufgerufen wird.
+    self.gametimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(callBack) userInfo:nil repeats:YES];
 }
 
-
+// Geschwindigkeit des Frames
+- (void)callBack {
+    static int count = 0;
+    // Anzahl der Durchlaefe bis der GameTimer beendet werden soll
+    if (count == 60)
+        [self.gametimer invalidate];
+    
+    CGRect blueRect = self.blueView.frame;
+    blueRect.origin.y += 1.0;
+    self.blueView.frame = blueRect;
+    count++;
+    
+}
+    
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
