@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CD8FFD9A1DBF845400AA6FA4"
-               BuildableName = "FLugsimulator.app"
-               BlueprintName = "FLugsimulator"
-               ReferencedContainer = "container:FLugsimulator.xcodeproj">
+               BlueprintIdentifier = "B54CAA1E1DBF8445000AC966"
+               BuildableName = "FlightSim.app"
+               BlueprintName = "FlightSim"
+               ReferencedContainer = "container:FlightSim.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CD8FFD9A1DBF845400AA6FA4"
-            BuildableName = "FLugsimulator.app"
-            BlueprintName = "FLugsimulator"
-            ReferencedContainer = "container:FLugsimulator.xcodeproj">
+            BlueprintIdentifier = "B54CAA1E1DBF8445000AC966"
+            BuildableName = "FlightSim.app"
+            BlueprintName = "FlightSim"
+            ReferencedContainer = "container:FlightSim.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CD8FFD9A1DBF845400AA6FA4"
-            BuildableName = "FLugsimulator.app"
-            BlueprintName = "FLugsimulator"
-            ReferencedContainer = "container:FLugsimulator.xcodeproj">
+            BlueprintIdentifier = "B54CAA1E1DBF8445000AC966"
+            BuildableName = "FlightSim.app"
+            BlueprintName = "FlightSim"
+            ReferencedContainer = "container:FlightSim.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CD8FFD9A1DBF845400AA6FA4"
-            BuildableName = "FLugsimulator.app"
-            BlueprintName = "FLugsimulator"
-            ReferencedContainer = "container:FLugsimulator.xcodeproj">
+            BlueprintIdentifier = "B54CAA1E1DBF8445000AC966"
+            BuildableName = "FlightSim.app"
+            BlueprintName = "FlightSim"
+            ReferencedContainer = "container:FlightSim.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
