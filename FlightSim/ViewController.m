@@ -28,9 +28,11 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     
-    self.blueView = [self SpawnCloudAt : ([[UIScreen mainScreen] bounds].size.width/2)];
+    //self.blueView = [self SpawnCloudAt : ([[UIScreen mainScreen] bounds].size.width/2)];
     
-    [self.clouds addObject:self.blueView];
+    self.clouds = [NSMutableArray arrayWithCapacity:10];
+    
+    //[self.clouds addObject:self.blueView];
     
     
     self.gametimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(callBack) userInfo:nil repeats:YES];
@@ -41,7 +43,7 @@
     
     UIView *redView;
     
-    CGRect blueFrame = CGRectMake( xpos - 50, 0, 100, 100);
+    CGRect blueFrame = CGRectMake( xpos - 50, -100, 100, 100);
     
     redView = [[UIView alloc]initWithFrame:blueFrame];
     
@@ -68,13 +70,20 @@
 }
 
 - (void)callBack{
-    static int count = 0;
     
-    if( count % 50 == 0)
+    static float momentum = 2.75;
+    static int collisionOther = -1;
+    
+    static int count = 0;
+    static int enemyCount = 0;
+    static int spawnMax = 3;
+    
+    if( count % 900 == 0 && enemyCount < spawnMax)
     {
-        int randomMod = (( arc4random() % 100) + 1);
-        int newSpawn = [[UIScreen mainScreen] bounds].size.width / randomMod;
+        int newSpawn = arc4random_uniform([[UIScreen mainScreen] bounds].size.width);
+        
         [self.clouds addObject: [self SpawnCloudAt: newSpawn]];
+        enemyCount = (int)self.clouds.count;
     }
     
     for(int i = 0; i < self.clouds.count; i++)
@@ -85,20 +94,34 @@
         
         if(currentRect.origin.y > [[UIScreen mainScreen] bounds].size.height)
         {
-            int randomMod = (( arc4random() % 100) + 1);
-            
             currentRect.origin.y = -100;
-            int newSpawn = [[UIScreen mainScreen] bounds].size.width / randomMod;
+            int newSpawn = arc4random_uniform([[UIScreen mainScreen] bounds].size.width);;
             currentRect.origin.x = newSpawn;
-            NSLog(@"The cloud is gone");
+            if(collisionOther == i)
+            {
+                collisionOther = -1;
+            }
         }
         else
         {
-            currentRect.origin.y += 5.0;
+            currentRect.origin.y += momentum;
         }
+        
+        if( CGRectIntersectsRect( currentRect, self.airplane.frame))
+        {
+            if(collisionOther != i)
+            {
+                NSLog(@"COLLISION");
+            
+                momentum -= (momentum * 0.12);
+                collisionOther = i;
+            }
+        }
+        
         
         currentView.frame = currentRect;
     }
+
     
     
     count++;
