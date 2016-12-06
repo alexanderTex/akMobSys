@@ -70,13 +70,15 @@
 }
 
 - (void)callBack{
+    static float planespeed = 847;
     
-    static float momentum = 2.75;
-    static int collisionOther = -1;
+    static int collisionLastFrame = -1;
     
     static int count = 0;
     static int enemyCount = 0;
     static int spawnMax = 3;
+    
+    float momentum = planespeed / 800;
     
     if( count % 900 == 0 && enemyCount < spawnMax)
     {
@@ -85,6 +87,9 @@
         [self.clouds addObject: [self SpawnCloudAt: newSpawn]];
         enemyCount = (int)self.clouds.count;
     }
+    
+    bool alreadyCollided = false;
+    int currentCollision = -1;
     
     for(int i = 0; i < self.clouds.count; i++)
     {
@@ -95,11 +100,11 @@
         if(currentRect.origin.y > [[UIScreen mainScreen] bounds].size.height)
         {
             currentRect.origin.y = -100;
-            int newSpawn = arc4random_uniform([[UIScreen mainScreen] bounds].size.width);;
+            int newSpawn = arc4random_uniform([[UIScreen mainScreen] bounds].size.width);
             currentRect.origin.x = newSpawn;
-            if(collisionOther == i)
+            if(collisionLastFrame == i)
             {
-                collisionOther = -1;
+                collisionLastFrame = -1;
             }
         }
         else
@@ -107,21 +112,35 @@
             currentRect.origin.y += momentum;
         }
         
-        if( CGRectIntersectsRect( currentRect, self.airplane.frame))
+        if( !alreadyCollided && CGRectIntersectsRect( currentRect, self.airplane.frame ))
         {
-            if(collisionOther != i)
-            {
-                NSLog(@"COLLISION");
+            currentCollision = i;
             
-                momentum -= (momentum * 0.12);
-                collisionOther = i;
+            if(collisionLastFrame == currentCollision)
+            {
+                alreadyCollided = true;
             }
         }
+        
+
         
         
         currentView.frame = currentRect;
     }
-
+    
+    NSLog(@"%d, %i", currentCollision, collisionLastFrame);
+    
+    
+    
+    if(currentCollision != collisionLastFrame && currentCollision >= 0){
+        NSLog(@"COLLISION");
+        
+        planespeed -= (planespeed * 0.12);
+        NSLog(@"%f", planespeed);
+        
+    }
+    
+    collisionLastFrame = currentCollision;
     
     
     count++;
