@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B514751B1E2E64AF005849A7 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B514751A1E2E64AF005849A7 /* StartViewController.m */; };
 		B54CAA241DBF8445000AC966 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B54CAA231DBF8445000AC966 /* main.m */; };
 		B54CAA271DBF8445000AC966 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B54CAA261DBF8445000AC966 /* AppDelegate.m */; };
 		B54CAA2A1DBF8445000AC966 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B54CAA291DBF8445000AC966 /* ViewController.m */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B51475191E2E64AF005849A7 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
+		B514751A1E2E64AF005849A7 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		B54CAA1F1DBF8445000AC966 /* FlightSim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlightSim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B54CAA231DBF8445000AC966 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B54CAA251DBF8445000AC966 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -67,6 +70,8 @@
 				B54CAA281DBF8445000AC966 /* ViewController.h */,
 				B54CAA291DBF8445000AC966 /* ViewController.m */,
 				B54CAA2B1DBF8445000AC966 /* Main.storyboard */,
+				B51475191E2E64AF005849A7 /* StartViewController.h */,
+				B514751A1E2E64AF005849A7 /* StartViewController.m */,
 				B54CAA2E1DBF8445000AC966 /* Assets.xcassets */,
 				B54CAA3B1DBF869E000AC966 /* Avatar_plane.png */,
 				B56A30001DE482E1001BA93A /* wolken.png */,
@@ -159,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B54CAA2A1DBF8445000AC966 /* ViewController.m in Sources */,
+				B514751B1E2E64AF005849A7 /* StartViewController.m in Sources */,
 				B54CAA271DBF8445000AC966 /* AppDelegate.m in Sources */,
 				B54CAA241DBF8445000AC966 /* main.m in Sources */,
 			);
