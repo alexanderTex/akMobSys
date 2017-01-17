@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 
+
 @interface ViewController ()
 
 //airplane image property
@@ -28,11 +29,22 @@
 
 @property (nonatomic) float gameTime;
 
+@property (nonatomic) int collisionLastFrame;
+
+@property (nonatomic) int lastSpawn;
+@property (nonatomic) int enemyCount;
+@property (nonatomic) int spawnMax;
+
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *quitButton;
+
 
 @end
 
-@implementation ViewController
+@implementation ViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,9 +67,23 @@
     
     self.planespeed = 847.0;
     
+    self.collisionLastFrame = -1;
+    
+    self.lastSpawn = 0;
+    
+    self.enemyCount = 0;
+    
+    self.spawnMax = 3;
+    
+    
     self.distanceLabel.text = [NSString stringWithFormat:@"Distance: %.3f km", self.distanceTravelled];
     
+    self.timeLabel.text =[NSString stringWithFormat:@"Time : %.1f sec", self.gameTime];
+    
     self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:self.fixedUpdateDelta target:self selector:@selector(callBack) userInfo:nil repeats:YES];
+    
+    
+    self.quitButton.hidden = YES;
     
 }
 
@@ -69,7 +95,7 @@
     
     redView = [[UIView alloc]initWithFrame:blueFrame];
     
-    redView.backgroundColor = [UIColor greenColor];
+    //redView.backgroundColor = [UIColor greenColor];
     
     [self.view addSubview:redView];
     
@@ -95,11 +121,8 @@
 
 - (void)callBack{
     
-    static int collisionLastFrame = -1;
+    static float endTime = 12.0;
     
-    static int count = 0;
-    static int enemyCount = 0;
-    static int spawnMax = 3;
     
     float momentum = self.planespeed / (60*3);
     
@@ -111,12 +134,12 @@
     {
         
     
-        if( count % 900 == 0 && enemyCount < spawnMax)
+        if( self.lastSpawn % 900 == 0 && self.enemyCount < self.spawnMax)
         {
             int newSpawn = arc4random_uniform([[UIScreen mainScreen] bounds].size.width);
         
             [self.clouds addObject: [self SpawnCloudAt: newSpawn]];
-            enemyCount = (int)self.clouds.count;
+            self.enemyCount = (int)self.clouds.count;
         }
     
         bool alreadyCollided = false;
@@ -133,9 +156,9 @@
                 currentRect.origin.y = -100;
                 int newSpawn = arc4random_uniform([[UIScreen mainScreen] bounds].size.width);
                 currentRect.origin.x = newSpawn;
-                if(collisionLastFrame == i)
+                if(self.collisionLastFrame == i)
                 {
-                    collisionLastFrame = -1;
+                    self.collisionLastFrame = -1;
                 }
             }
             else
@@ -147,7 +170,7 @@
             {
                 currentCollision = i;
             
-                if(collisionLastFrame == currentCollision)
+                if(self.collisionLastFrame == currentCollision)
                 {
                     alreadyCollided = true;
                 }
@@ -163,7 +186,7 @@
     
     
     
-        if(currentCollision != collisionLastFrame && currentCollision >= 0){
+        if(currentCollision != self.collisionLastFrame && currentCollision >= 0){
             NSLog(@"COLLISION");
         
             self.planespeed -= (self.planespeed * 0.12);
@@ -172,16 +195,18 @@
             if(self.planespeed <= stallSpeed)
             {
                 NSLog(@"You crashd");
-                self.gameOver = true;
+                [self EndGame];
             }
         }
         
-        collisionLastFrame = currentCollision;
+        self.collisionLastFrame = currentCollision;
         
         
-        count++;
+        self.lastSpawn++;
         
         self.gameTime += self.fixedUpdateDelta;
+        
+        self.timeLabel.text =[NSString stringWithFormat:@"Time : %.1f sec", self.gameTime];
         
         
         if((int)(self.gameTime * 100) % 100 == 0)
@@ -190,13 +215,14 @@
             
             self.distanceLabel.text = [NSString stringWithFormat:@"Distance: %.3f km", self.distanceTravelled];
             
-            if(self.gameTime >= 12.0)
+            if(self.gameTime >= endTime)
             {
                 
-                self.gameOver = true;
+                
                 
                 NSLog(@"Distance Travelled = %f", self.distanceTravelled);
                 NSLog(@"Game Over");
+                [self EndGame];
                 
             }
             NSLog(@"Current Game Time =  %f", self.gameTime);
@@ -248,6 +274,18 @@
 - (void)UpdateDistance{
     
     self.distanceTravelled += self.planespeed/3600;
+    
+}
+
+
+- (void)EndGame{
+    self.gameOver = true;
+    self.quitButton.hidden = NO;
+}
+
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
 }
 
