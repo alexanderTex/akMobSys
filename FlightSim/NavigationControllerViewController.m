@@ -1,24 +1,26 @@
 //
-//  StartViewController.m
+//  NavigationControllerViewController.m
 //  FlightSim
 //
-//  Created by  on 17/01/17.
+//  Created by  on 24/01/17.
 //  Copyright © 2017 a. All rights reserved.
 //
 
-#import "StartViewController.h"
-#import "ViewController.h"
+#import "NavigationControllerViewController.h"
 
-@interface StartViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *playerName;
+@interface NavigationControllerViewController ()
+
+
 
 @end
 
-@implementation StartViewController
+@implementation NavigationControllerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSLog(@"NavCon activated");
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,16 +29,25 @@
 }
 
 
-#pragma mark - Navigation
+//#pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    ViewController* vc = [segue destinationViewController];
+    NSLog(@"Segue executed");
     
-    vc.PlayerName = self.playerName.text;
+    if([segue.identifier  isEqual: @"StartGame"])
+    {
+        [self.navigationBar setHidden:YES];
+    }
+    else if([segue.identifier  isEqual: @"QuitGame"])
+    {
+        [self.navigationBar setHidden:NO];
+        
+        // uebergabe von spielergebnis
+    }
 }
 
 

@@ -39,8 +39,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *quitButton;
-
 
 @end
 
@@ -49,7 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+
     
     //self.blueView = [self SpawnCloudAt : ([[UIScreen mainScreen] bounds].size.width/2)];
     
@@ -82,9 +80,13 @@
     
     self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:self.fixedUpdateDelta target:self selector:@selector(callBack) userInfo:nil repeats:YES];
     
+
     
-    self.quitButton.hidden = YES;
-    
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.navigationController.navigationBar setHidden:YES];
 }
 
 - (UIView *)SpawnCloudAt: (int) xpos{
@@ -277,10 +279,16 @@
     
 }
 
+- (void) SaveGame{
+    NSLog(@"I GOT SAVED!!! MY HERO!!! <3");
+    NSLog(@"MY HERO IS %@", self.PlayerName);
+}
+
 
 - (void)EndGame{
     self.gameOver = true;
-    self.quitButton.hidden = NO;
+    [self SaveGame];
+    [self.navigationController.navigationBar setHidden:NO];
 }
 
 
