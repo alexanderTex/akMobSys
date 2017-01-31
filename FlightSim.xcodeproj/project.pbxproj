@@ -16,6 +16,7 @@
 		B54CAA321DBF8445000AC966 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B54CAA301DBF8445000AC966 /* LaunchScreen.storyboard */; };
 		B54CAA3C1DBF869E000AC966 /* Avatar_plane.png in Resources */ = {isa = PBXBuildFile; fileRef = B54CAA3B1DBF869E000AC966 /* Avatar_plane.png */; };
 		B56A30011DE482E1001BA93A /* wolken.png in Resources */ = {isa = PBXBuildFile; fileRef = B56A30001DE482E1001BA93A /* wolken.png */; };
+		B57E33491E40CFA9009FCE82 /* HighScoreControllerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57E33481E40CFA9009FCE82 /* HighScoreControllerTableViewController.m */; };
 		B5C6100D1E378D6F00423C74 /* NavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C6100C1E378D6F00423C74 /* NavigationControllerViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,8 @@
 		B54CAA331DBF8445000AC966 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B54CAA3B1DBF869E000AC966 /* Avatar_plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Avatar_plane.png; sourceTree = "<group>"; };
 		B56A30001DE482E1001BA93A /* wolken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolken.png; sourceTree = "<group>"; };
+		B57E33471E40CFA9009FCE82 /* HighScoreControllerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoreControllerTableViewController.h; sourceTree = "<group>"; };
+		B57E33481E40CFA9009FCE82 /* HighScoreControllerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoreControllerTableViewController.m; sourceTree = "<group>"; };
 		B5C6100B1E378D6F00423C74 /* NavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationControllerViewController.h; sourceTree = "<group>"; };
 		B5C6100C1E378D6F00423C74 /* NavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +80,8 @@
 				B5C6100C1E378D6F00423C74 /* NavigationControllerViewController.m */,
 				B51475191E2E64AF005849A7 /* StartViewController.h */,
 				B514751A1E2E64AF005849A7 /* StartViewController.m */,
+				B57E33471E40CFA9009FCE82 /* HighScoreControllerTableViewController.h */,
+				B57E33481E40CFA9009FCE82 /* HighScoreControllerTableViewController.m */,
 				B54CAA2E1DBF8445000AC966 /* Assets.xcassets */,
 				B54CAA3B1DBF869E000AC966 /* Avatar_plane.png */,
 				B56A30001DE482E1001BA93A /* wolken.png */,
@@ -172,6 +177,7 @@
 				B514751B1E2E64AF005849A7 /* StartViewController.m in Sources */,
 				B54CAA271DBF8445000AC966 /* AppDelegate.m in Sources */,
 				B54CAA241DBF8445000AC966 /* main.m in Sources */,
+				B57E33491E40CFA9009FCE82 /* HighScoreControllerTableViewController.m in Sources */,
 				B5C6100D1E378D6F00423C74 /* NavigationControllerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

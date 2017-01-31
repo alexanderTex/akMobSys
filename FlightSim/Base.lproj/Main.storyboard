@@ -54,7 +54,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1124" y="636"/>
+            <point key="canvasLocation" x="-1262" y="660"/>
         </scene>
         <!--Navigation Controller View Controller-->
         <scene sceneID="A7P-sv-LPH">
@@ -104,7 +104,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Highscore"/>
                                 <connections>
-                                    <segue destination="NcC-Zv-dhs" kind="show" id="t8l-U6-PBU"/>
+                                    <segue destination="NcC-Zv-dhs" kind="show" identifier="ToHighScore" id="t8l-U6-PBU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -117,12 +117,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xUX-TX-O2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2346" y="636"/>
+            <point key="canvasLocation" x="-2286" y="672"/>
         </scene>
-        <!--Table View Controller-->
+        <!--High Score Controller Table View Controller-->
         <scene sceneID="Gpe-wR-E6h">
             <objects>
-                <tableViewController id="NcC-Zv-dhs" sceneMemberID="viewController">
+                <tableViewController id="NcC-Zv-dhs" customClass="HighScoreControllerTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="G5d-1q-OS5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

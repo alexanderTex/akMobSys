@@ -12,6 +12,8 @@
 @interface StartViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *playerName;
 
+
+
 @end
 
 @implementation StartViewController
@@ -19,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,7 +39,12 @@
     
     ViewController* vc = [segue destinationViewController];
     
-    vc.PlayerName = self.playerName.text;
+    if([segue.identifier  isEqual: @"StartGame"])
+    {
+        vc.PlayerName = self.playerName.text;
+    }
+    
+    
 }
 
 

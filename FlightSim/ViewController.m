@@ -282,6 +282,13 @@
 - (void) SaveGame{
     NSLog(@"I GOT SAVED!!! MY HERO!!! <3");
     NSLog(@"MY HERO IS %@", self.PlayerName);
+    
+    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"HighScore"] ];
+    
+    [dict setObject: [NSString stringWithFormat:@"%f", self.distanceTravelled]  forKey: self.PlayerName];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDictionary dictionaryWithDictionary:dict] forKey:@"HighScore"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
