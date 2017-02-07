@@ -123,7 +123,7 @@
 
 - (void)callBack{
     
-    static float endTime = 12.0;
+    static float endTime = 120.0;
     
     
     float momentum = self.planespeed / (60*3);

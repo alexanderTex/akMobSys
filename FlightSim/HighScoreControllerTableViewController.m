@@ -12,9 +12,30 @@
 
 @property (strong, nonatomic) NSMutableDictionary *highscore;
 
+@property (strong, nonatomic) NSArray *playerNames;
+
 @end
 
 @implementation HighScoreControllerTableViewController
+
+- (NSArray *)sortKeysByFloatValue:(NSDictionary *)dictionary {
+    
+    NSArray *sortedKeys = [dictionary keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        float v1 = [obj1 floatValue];
+        NSLog(@"%f", v1);
+        float v2 = [obj2 floatValue];
+        NSLog(@"%f", v2);
+        if (v1 > v2)
+            return NSOrderedAscending;
+        else if (v1 < v2)
+            return NSOrderedDescending;
+        else
+            return NSOrderedSame;
+    }];
+    
+    NSLog(@"%@" , sortedKeys);
+    return sortedKeys;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,10 +48,13 @@
     
     self.highscore = [[NSUserDefaults standardUserDefaults] objectForKey:@"HighScore"];
     
-    NSLog(@"My Dic is: %@", self.highscore);
+    //NSLog(@"My Dic is: %@", self.highscore);
     
-    self.tableView.dataSource = 
+    self.playerNames = [self sortKeysByFloatValue : self.highscore];
+    
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -39,26 +63,43 @@
 
 #pragma mark - Table view data source
 
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Incomplete implementation, return the number of sections
     return 0;
 }
+*/
 
+// this method tells the UITableView how many rows are present in the specified section
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     
-    return 10; //self.highscore.allKeys.count;
+    return self.highscore.allKeys.count;
 }
 
-/*
+
+// this method is the one that creates and configures the cell that will be
+// displayed at the specified indexPath
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier];
     
     // Configure the cell...
     
+    if(cell != nil)
+    {
+        
+        NSString *s = [NSString stringWithFormat:@"%ld.  %@  :  %@", (long)(indexPath.row + 1), [self.playerNames objectAtIndex:indexPath.row] , [self.highscore objectForKey:[self.playerNames objectAtIndex:indexPath.row]] ];
+    
+        cell.textLabel.text = s;
+    }
+    else
+    {
+        NSLog(@"Cell is null");
+    }
+    
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
